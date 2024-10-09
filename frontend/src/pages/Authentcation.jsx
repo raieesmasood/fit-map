@@ -71,7 +71,7 @@ const Authentcation = () => {
           <>
             <SignIn />
             <Text>
-              Don't have an account?{" "}
+              Don't have an account? {""}
               <TextButton onClick={() => setLogin(true)}>SignUp</TextButton>
             </Text>
           </>
@@ -79,7 +79,7 @@ const Authentcation = () => {
           <>
             <SignUp />
             <Text>
-              Already have an account?{" "}
+              Already have an account? {""}
               <TextButton onClick={() => setLogin(false)}>SignIn</TextButton>
             </Text>
           </>

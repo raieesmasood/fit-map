@@ -1,9 +1,12 @@
-import React from "react";
-import styled from "styled-components"; 
-import{ThemeProvider} from "styled-components";
-import {BrowserRouter} from "react-router-dom";
-import Authentication from "./pages/Authentcation"
-import{lightTheme} from "./utils/themes";
+import React, { useState } from "react";
+import styled from "styled-components";
+import { ThemeProvider } from "styled-components";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Authentication from "./pages/Authentcation";
+import { lightTheme } from "./utils/themes";
+import Navbar from "./components/Navbar";
+import Dashboard from "./pages/Dashboard";
+import Workouts from "./pages/Workouts";
 
 const Container = styled.div`
   width: 100%;
@@ -18,15 +21,26 @@ const Container = styled.div`
 `;
 
 const App = () => {
+  const [user, setUser] = useState(true);
   return (
     <ThemeProvider theme={lightTheme}>
-     <BrowserRouter>
-     <Container>
-      <Authentication/>
-     </Container>
-     </BrowserRouter>
+      <BrowserRouter>
+        {user ? (
+        <Container>
+        <Navbar />
+        <Routes>
+          <Route path="/" exact element={<Dashboard />} />
+          <Route path="/workouts" exact element={<Workouts />} />
+        </Routes>
+      </Container>
+        ) : (
+          <Container>
+            <Authentication />
+          </Container>
+        )}
+      </BrowserRouter>
     </ThemeProvider>
-  )
-}
+  );
+};
 
 export default App;

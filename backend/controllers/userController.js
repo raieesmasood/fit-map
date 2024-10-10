@@ -1,4 +1,5 @@
 const User = require('../models/userModel');
+const bcrypt = require('bcrypt');
 
 
 const userRegisterController = async (req,res)=>{
@@ -17,11 +18,16 @@ const userRegisterController = async (req,res)=>{
             return res.status(409).json({mesage:'Email is already in use'})
         }
 
+        const hashPass = await bcrypt.hash(password,10);
+        // const salt = bcrypt.genSaltSync(10);
+        // const hashedPassword = bcrypt.hashSync(password, salt);
+
         //Create new user
         const createUser = await User.create({
             name,
             email,
-            password,
+            password: hashPass,
+            // password: hashedPassword,
             img,
         })
 

@@ -1,5 +1,6 @@
 const express = require('express');
 const connectDb = require('./config/db');
+const cors = require ('cors')
 
 const port = 4000;
 
@@ -7,6 +8,13 @@ const port = 4000;
 connectDb();
 
 const server = express();
+
+const corsOptions = {
+    origin: 'http://localhost:3000', // Your frontend origin
+    credentials: true,               // Allow credentials (cookies)
+  };
+  
+  server.use(cors(corsOptions));
 
 // Middleware to parse incoming JSON requests
 server.use(express.json());

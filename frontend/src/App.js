@@ -25,7 +25,7 @@ const App = () => {
   return (
     <ThemeProvider theme={lightTheme}>
       <BrowserRouter>
-        {user ? (
+        {!user ? (
         <Container>
         <Navbar />
         <Routes>

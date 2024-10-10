@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import TextInput from "./TextInput";
 import Button from "./Button";
-// import { UserSignIn } from "../api";
+import { UserSignIn } from "../api/axios";
 // import { useDispatch } from "react-redux";
 // import { loginSuccess } from "../redux/reducers/userSlice";
 
@@ -39,24 +39,24 @@ const SignIn = () => {
     return true;
   };
 
-  // const handelSignIn = async () => {
-  //   setLoading(true);
-  //   setButtonDisabled(true);
-  //   if (validateInputs()) {
-  //     await UserSignIn({ email, password })
-  //       .then((res) => {
-  //         dispatch(loginSuccess(res.data));
-  //         alert("Login Success");
-  //         setLoading(false);
-  //         setButtonDisabled(false);
-  //       })
-  //       .catch((err) => {
-  //         alert(err.response.data.message);
-  //         setLoading(false);
-  //         setButtonDisabled(false);
-  //       });
-  //   }
-  // };
+  const handelSignIn = async () => {
+    setLoading(true);
+    setButtonDisabled(true);
+    if (validateInputs()) {
+      await UserSignIn({ email, password })
+        .then((res) => {
+          // dispatch(loginSuccess(res.data));
+          alert("Login Success");
+          setLoading(false);
+          setButtonDisabled(false);
+        })
+        .catch((err) => {
+          alert(err.response.data.message);
+          setLoading(false);
+          setButtonDisabled(false);
+        });
+    }
+  };
 
   return (
     <Container>
@@ -86,7 +86,7 @@ const SignIn = () => {
         />
         <Button
           text="Sign In"
-          // onClick={handelSignIn}
+          onClick={handelSignIn}
           isLoading={loading}
           isDisabled={buttonDisabled}
         />
